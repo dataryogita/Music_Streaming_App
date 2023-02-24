@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block body %}
+<style>
+body {
+   margin: 0;
+}
+#index-jumbotron {
+    background-image: url(static/images/banner.jpg);
+    background-size: cover;
+    padding-bottom: 46.128%; /* <- This value should be equal to height / width */
+}
+</style>
+<div class="jumbotran text-center">
+	<h1>Welcome to music app</h1>
+	<p class="lead"> Music is your own experience, your thoughts, your wisdom. If you don’t live it, it won’t come out of your horn.</p>
+</div>
+<div id="index-jumbotron"></div>
+{% endblock %}
