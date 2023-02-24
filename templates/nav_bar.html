@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="background-color: #363636;">
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
@@ -6,16 +6,6 @@
       <li class="active"><a href="/">Home</a></li>
       <li><a href="/song">Songs</a></li>
     </ul>
-    <!-- <ul class="nav navbar-nav navbar-right"> -->
-      <!-- {% if session.logged_in %}
-        <li class="active"><a href="/dashboard">DASHBOARD</a><li>
-        <li class="active"><a href="/logout">logout</a><li>
-      {% else %}
-        <li class="active"><a href="/register">Register</a></li>
-        <li class="active"><a href="/login">Login</a></li>
-      {% endif %} -->
-
-    <!-- </ul> -->
     <form action="/new" class="navbar-form navbar-left" method="POST">
       <div class="form-group">
         <input type="text" class="form-control" name="give" placeholder="Search">

@@ -1,0 +1,9 @@
+{% extends 'layout.html' %}
+{% block body %}
+<h1>{{song_name}}</h1>
+ <audio controls>
+   <source src= {{ url_for('static', filename=song_name ) }} type="audio/mpeg">
+ </audio>
+ <p>Click on play icon to play</p>
+
+{% endblock %}
