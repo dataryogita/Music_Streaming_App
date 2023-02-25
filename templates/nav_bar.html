@@ -1,14 +1,14 @@
-<nav class="navbar navbar-inverse" style="background-color: #363636;">
+<nav class="navbar navbar-inverse" style="background-color:  #e21010;">
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/">Home</a></li>
-      <li><a href="/song">Songs</a></li>
+      <li class="active"><a href="/song">Songs</a></li>
     </ul>
-    <form action="/new" class="navbar-form navbar-left" method="POST">
+    <form action="/search_song" class="navbar-form navbar-left" method="POST">
       <div class="form-group">
-        <input type="text" class="form-control" name="give" placeholder="Search">
+        <input type="text" class="form-control" name="ele" placeholder="Search song">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>

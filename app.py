@@ -6,7 +6,6 @@ from wtforms import StringField,SubmitField,validators
 from werkzeug.utils import secure_filename
 import os
 
-
 app = Flask(__name__,static_folder='static')
 app.config['SECRET_KEY'] = '5677474HEHBDBDBDERYRY'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -40,7 +39,7 @@ def home():
     return render_template('index.html')
 
 @app.route("/song")
-def song():
+def all_songs():
 	songs = SongDetails.query.all()
 	return render_template('songs.html',songs=songs)
 
@@ -63,8 +62,10 @@ def add_song():
 				db.session.add(sd)
 				db.session.commit()
 				flash('Song Sucessfully Added!','success')
-				return redirect(url_for('song'))
-	return render_template('addsongs.html',title='AddSongs',form=form)
+				return redirect(url_for('all_songs'))
+		else:
+			flash('Please Upload a Song First','danger')
+	return render_template('addsongs.html',form=form)
 
 
 @app.route('/delete_song/<int:id>',methods=['GET'])
@@ -73,13 +74,25 @@ def delete_song(id):
 	db.session.delete(song)
 	db.session.commit()
 	flash("Song successfully deleted",'success')
-	return redirect(url_for('song'))
+	return redirect(url_for('all_songs'))
+
 
 @app.route('/play_song/<int:id>')
 def play_song(id):
 	song = SongDetails.query.get(id)
 	name = song.song_url.split('/')[-1]
-	return render_template('play_song.html',title='PlaySong',song_name=name)
+	return render_template('play_song.html',song_name=name)
+
+
+@app.route('/search_song',methods=['POST'])
+def search_song():
+	element = request.form['ele']
+	song_obj = SongDetails.query.filter_by(title = element).all()
+	if len(song_obj)<=0:
+		song_obj = SongDetails.query.filter_by(artist = element).all()
+		if len(song_obj)<=0:
+			song_obj = SongDetails.query.filter_by(album = element).all()	
+	return render_template('songs.html',songs=song_obj)
 
 
 
